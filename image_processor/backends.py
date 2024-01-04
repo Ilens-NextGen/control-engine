@@ -146,7 +146,7 @@ class ImageProcessor:
 
         return final_image
 
-    def save_image_grid(self, image, output_path: str, show = True):
+    def save_image_grid(self, image, output_path: str, show = True, save=False):
         output_timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         output_name = f"output/grid-{output_timestamp}.jpg"
         output_path = os.path.abspath(output_name)
@@ -155,7 +155,8 @@ class ImageProcessor:
             cv2.imshow('Image Grid', image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
-        cv2.imwrite(output_name, image)
+        if save:
+            cv2.imwrite(output_name, image)
         return output_name
         
     def video_to_grid(self, video, show, max_frames=4):
